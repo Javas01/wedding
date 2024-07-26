@@ -215,7 +215,15 @@ export function DialogDemo({
 
   async function onSubmit(values: z.infer<typeof formSchema>, e: any) {
     const hasGuests = numOfGuests[0] > 1;
-    const data = { ...values, willAttend, numOfGuests };
+    const data = {
+      ...values,
+      willAttend,
+      ...(willAttend
+        ? numOfGuests
+        : {
+            numOfGuests: 0
+          })
+    };
     setOpen(false);
     form.reset();
     setSubmitted(true);

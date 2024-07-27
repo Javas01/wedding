@@ -18,7 +18,7 @@ export const DetailsRow = ({
   address: { location: string; street: string; city: string };
 }) => {
   return (
-    <div className="flex space-x-3 flex-col w-3/4 justify-evenly pb-32 pt-10 lg:flex-row text-center">
+    <div className="flex space-x-3 flex-col w-3/4 justify-evenly pb-10 lg:pb-32 pt-10 lg:flex-row text-center">
       <div className="flex flex-col  items-center">
         <span className="pb-10 text-4xl" style={dancing.style}>
           Host

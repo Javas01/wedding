@@ -82,7 +82,7 @@ export default function Home() {
 
         <Swirly />
 
-        <span className="w-1/2 text-center p-10 mt-10 text-xl">
+        <span className="w-100vw lg:w-1/2 text-center p-10 mt-10 text-xl">
           Join us as we go into the woods to celebrate the union of Shakoora and
           Nabeel. Guests are asked to avoid wearing blue, purple, yellow, red,
           or orange colors. Indoor reception to follow.

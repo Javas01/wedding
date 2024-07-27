@@ -56,7 +56,7 @@ export default function Home() {
           style={{
             fontFamily: '"Brush Script MT", cursive'
           }}
-          className="p-10 text-7xl  w-1/2 text-center"
+          className="p-10 text-7xl  w-100vw text-wrap text-center lg:w-1/2"
         >
           The Wedding of Shakoora & Nabeel
         </span>

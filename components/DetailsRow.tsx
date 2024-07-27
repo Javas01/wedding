@@ -1,6 +1,7 @@
 import React from "react";
 import { Dot } from "./svg";
 import { Dancing_Script } from "next/font/google";
+import { Spacer } from "@/components/Spacer";
 
 const dancing = Dancing_Script({
   subsets: ["latin"],
@@ -17,7 +18,7 @@ export const DetailsRow = ({
   address: { location: string; street: string; city: string };
 }) => {
   return (
-    <div className="flex space-x-3 flex-row w-3/4 justify-evenly pb-48 pt-10">
+    <div className="flex space-x-3 flex-col w-3/4 justify-evenly pb-32 pt-10 lg:flex-row">
       <div className="flex flex-col  items-center">
         <span className="pb-10 text-4xl" style={dancing.style}>
           Host
@@ -25,6 +26,9 @@ export const DetailsRow = ({
         <Dot />
         <span className="pt-10">{host}</span>
       </div>
+
+      <Spacer />
+
       <div className="flex flex-col  items-center">
         <span className="pb-10 text-4xl" style={dancing.style}>
           Date
@@ -60,6 +64,9 @@ export const DetailsRow = ({
           {date.time}
         </span>
       </div>
+
+      <Spacer />
+
       <div className="flex flex-col items-center">
         <span className="pb-10 text-4xl" style={dancing.style}>
           Address

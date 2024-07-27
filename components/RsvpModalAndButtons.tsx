@@ -66,7 +66,9 @@ export const RsvpModalAndButtons = ({
       ...values,
       willAttend,
       ...(willAttend
-        ? numOfGuests
+        ? {
+            numOfGuests: hasGuests ? numOfGuests[0] : 1
+          }
         : {
             numOfGuests: 0
           })

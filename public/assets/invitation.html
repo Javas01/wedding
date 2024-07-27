@@ -130,6 +130,51 @@
           z-index: 0;
         }
       }
+
+      @media (max-width: 450px) {
+        .envelope {
+          width: 400px;
+        }
+        .envelope-flap {
+          border-left: 200px solid transparent;
+          border-right: 200px solid transparent;
+        }
+        .envelope-top {
+          border-left: 200px solid transparent;
+          border-right: 200px solid transparent;
+        }
+        .envelope-bottom {
+          border-left: 200px solid transparent;
+          border-right: 200px solid transparent;
+        }
+        .envelope-left {
+          border-right: 200px solid #f5deb3;
+        }
+        .envelope-right {
+          border-left: 200px solid #f5deb3;
+        }
+        img {
+          width: 250px;
+          padding-left: 150px;
+
+          animation: slideup 3s 2s forwards;
+        }
+
+        @keyframes slideup {
+          0% {
+            transform: rotate(-90deg);
+          }
+          50% {
+            transform: translateY(-5vw) rotate(-90deg);
+            padding-left: 200px;
+          }
+          100% {
+            padding-left: 0;
+            transform: translateY(-10vw) translateX(-18vw) rotate(0deg)
+              scale(1.5);
+          }
+        }
+      }
     </style>
   </head>
 

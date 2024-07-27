@@ -18,9 +18,9 @@ export const DetailsRow = ({
   address: { location: string; street: string; city: string };
 }) => {
   return (
-    <div className="flex space-x-3 flex-col w-3/4 justify-evenly pb-10 lg:pb-32 pt-10 lg:flex-row text-center">
+    <div className="flex space-x-3 flex-col w-3/4 justify-evenly pb-10 lg:pb-14 pt-10 lg:flex-row text-center">
       <div className="flex flex-col  items-center">
-        <span className="pb-10 text-4xl" style={dancing.style}>
+        <span className="pb-10 text-4xl underline" style={dancing.style}>
           Host
         </span>
         <Dot />
@@ -30,14 +30,13 @@ export const DetailsRow = ({
       <Spacer />
 
       <div className="flex flex-col  items-center">
-        <span className="pb-10 text-4xl" style={dancing.style}>
+        <span className="pb-10 text-4xl underline" style={dancing.style}>
           Date
         </span>
         <Dot />
         <span
-          className="pt-10"
+          className="pt-10 underline"
           style={{
-            textDecoration: "underline",
             textDecorationColor: "rgb(41, 100, 195)",
             cursor: "pointer"
           }}
@@ -50,8 +49,8 @@ export const DetailsRow = ({
           {date.day}
         </span>
         <span
+          className="underline"
           style={{
-            textDecoration: "underline",
             textDecorationColor: "rgb(41, 100, 195)",
             cursor: "pointer"
           }}
@@ -68,7 +67,7 @@ export const DetailsRow = ({
       <Spacer />
 
       <div className="flex flex-col items-center">
-        <span className="pb-10 text-4xl" style={dancing.style}>
+        <span className="pb-10 text-4xl underline" style={dancing.style}>
           Address
         </span>
         <Dot />

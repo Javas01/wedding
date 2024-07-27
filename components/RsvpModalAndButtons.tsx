@@ -97,7 +97,9 @@ export const RsvpModalAndButtons = ({
             size="lg"
             variant="outline"
             style={{
-              width: "150px"
+              width: "150px",
+              background: "rgba(255, 255, 255, 0.4)",
+              backdropFilter: "blur(10px)"
             }}
             onClick={() => setWillAttend(true)}
             disabled={submitted}
@@ -110,12 +112,14 @@ export const RsvpModalAndButtons = ({
             size="lg"
             variant="outline"
             style={{
-              width: "150px"
+              width: "150px",
+              background: "rgba(255, 255, 255, 0.4)",
+              backdropFilter: "blur(10px)"
             }}
             onClick={() => setWillAttend(false)}
             disabled={submitted}
           >
-            WILL NOT
+            REGRET TO MISS
           </Button>
         </DialogTrigger>
       </div>
@@ -159,7 +163,7 @@ export const RsvpModalAndButtons = ({
               }}
             >
               <span className={!willAttend ? "text-blue font-semibold" : ""}>
-                WILL NOT
+                REGRET TO MISS
               </span>
             </Toggle>
           </div>

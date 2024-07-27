@@ -6,7 +6,9 @@ import { Swirly } from "@/components/svg";
 import { DetailsRow } from "@/components/DetailsRow";
 import { RsvpModalAndButtons } from "@/components/RsvpModalAndButtons";
 import Footer from "@/components/Footer";
-import { Great_Vibes } from "next/font/google";
+import { Great_Vibes, Dancing_Script } from "next/font/google";
+import TreesBackground from "../public/assets/trees_five.jpg";
+import { ContactFab } from "@/components/Fab";
 
 const vibez = Great_Vibes({
   subsets: ["latin"],
@@ -51,6 +53,19 @@ export default function Home() {
       }}
       className="text-xl"
     >
+      <div
+        style={{
+          backgroundImage: `url(${TreesBackground.src})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundAttachment: "scroll",
+          height: "100vh",
+          position: "absolute",
+          overflow: "scroll",
+          width: "100vw",
+          zIndex: -1
+        }}
+      />
       <iframe
         scrolling="no"
         src="assets/invitation.html"
@@ -82,25 +97,43 @@ export default function Home() {
 
         <Swirly />
 
-        <span className="w-100vw lg:w-1/2 text-center p-10 mt-10 text-xl">
-          Join us as we go into the woods to celebrate the union of Shakoora and
-          Nabeel. Guests are asked to avoid wearing blue, purple, yellow, red,
-          or orange colors. Indoor reception to follow.
-        </span>
+        <div
+          className="m-5"
+          style={{
+            background: "rgba(255, 255, 255, 0.4)",
+            backdropFilter: "blur(10px)",
+            borderRadius: "10px",
+            width: "90%",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            justifyContent: "center"
+          }}
+        >
+          <span className="w-full lg:w-1/2 text-center p-10 pl-10 pr-10 mt-10 text-2xl">
+            <span className="pr-1 text-4xl" style={vibez.style}>
+              Together
+            </span>{" "}
+            with their families, Shakoora and Nabeel invite you to join them as
+            they go into the woods to celebrate their union. Indoor reception to
+            follow.
+          </span>
 
-        <DetailsRow
-          host="The Sabree and Al-Khattab Families"
-          date={{
-            day: "Sunday, September 29 2024",
-            time: "2:30PM EDT"
-          }}
-          address={{
-            location: "Into the Woods",
-            street: "432 S P County Rd 850 E",
-            city: "Greensburg, IN 47240"
-          }}
-        />
+          <DetailsRow
+            host="The Sabree and Al-Khattab Families"
+            date={{
+              day: "Sunday, September 29 2024",
+              time: "2:30PM EDT"
+            }}
+            address={{
+              location: "Into the Woods",
+              street: "432 S P County Rd 850 E",
+              city: "Greensburg, IN 47240"
+            }}
+          />
+        </div>
       </div>
+      <ContactFab />
       <Footer />
       <Toaster />
     </main>

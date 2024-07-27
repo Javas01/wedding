@@ -6,6 +6,14 @@ import { Swirly } from "@/components/svg";
 import { DetailsRow } from "@/components/DetailsRow";
 import { RsvpModalAndButtons } from "@/components/RsvpModalAndButtons";
 import Footer from "@/components/Footer";
+import { Great_Vibes } from "next/font/google";
+
+const vibez = Great_Vibes({
+  subsets: ["latin"],
+  display: "swap",
+  weight: "400",
+  style: "normal"
+});
 
 const firebaseConfig = {
   apiKey: process.env.FIREBASE_API_KEY,
@@ -53,9 +61,7 @@ export default function Home() {
       />
       <div className="flex justify-center items-center flex-col">
         <span
-          style={{
-            fontFamily: '"Brush Script MT", cursive'
-          }}
+          style={vibez.style}
           className="p-10 text-7xl  w-100vw text-wrap text-center lg:w-1/2"
         >
           The Wedding of Shakoora & Nabeel

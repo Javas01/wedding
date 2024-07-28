@@ -2,6 +2,7 @@ import React from "react";
 import { Dot } from "./svg";
 import { Dancing_Script } from "next/font/google";
 import { Spacer } from "@/components/Spacer";
+import { useToast } from "@/components/ui/use-toast";
 
 const dancing = Dancing_Script({
   subsets: ["latin"],
@@ -17,6 +18,7 @@ export const DetailsRow = ({
   date: { day: string; time: string };
   address: { location: string; street: string; city: string };
 }) => {
+  const { toast } = useToast();
   return (
     <div className="flex space-x-3 flex-col w-full lg:w-3/4 justify-evenly pb-10 lg:pb-14 pt-10 lg:flex-row text-center">
       <div className="flex flex-col  items-center">
@@ -71,10 +73,38 @@ export const DetailsRow = ({
           Address
         </span>
         <Dot />
-        <span className="pt-10">{address.location}</span>
-        <span className="text-nowrap">{address.street}</span>
-        <span>{address.city}</span>
+        <span
+          onClick={() => handleCopyAddress(toast)}
+          className="pt-10 cursor-pointer"
+        >
+          {address.location}
+        </span>
+        <span
+          onClick={() => handleCopyAddress(toast)}
+          className="text-nowrap cursor-pointer"
+        >
+          {address.street}
+        </span>
+        <span
+          className="text-nowrap cursor-pointer"
+          onClick={() => handleCopyAddress(toast)}
+        >
+          {address.city}
+        </span>
       </div>
     </div>
   );
+};
+
+const handleCopyAddress = async (toast: any) => {
+  try {
+    await navigator.clipboard.writeText(
+      `432 S P County Rd 850 E, Greensburg, IN 47240`
+    );
+    toast({
+      title: "Address Copied"
+    });
+  } catch (err) {
+    console.error("Failed to copy text: ", err);
+  }
 };

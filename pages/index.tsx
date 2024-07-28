@@ -9,6 +9,7 @@ import Footer from "@/components/Footer";
 import { Great_Vibes, Dancing_Script } from "next/font/google";
 import TreesBackground from "../public/assets/trees_five.jpg";
 import { ContactFab } from "@/components/Fab";
+import Head from "next/head";
 
 const vibez = Great_Vibes({
   subsets: ["latin"],
@@ -46,98 +47,116 @@ export default function Home() {
   }, []);
 
   return (
-    <main
-      style={{
-        height: "100vh",
-        overflow: "scroll"
-      }}
-      className="text-xl"
-    >
-      <div
-        style={{
-          backgroundImage: `url(${TreesBackground.src})`,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          backgroundAttachment: "scroll",
-          height: "100vh",
-          position: "absolute",
-          overflow: "scroll",
-          width: "100vw",
-          zIndex: -1
-        }}
-      />
-      <iframe
-        scrolling="no"
-        src="assets/invitation.html"
-        className="w-full h-full lg:h-4/5"
-        style={{
-          overflow: "hidden"
-        }}
-      />
-      <div className="flex justify-center items-center flex-col">
-        <span
-          style={vibez.style}
-          className="p-10 text-7xl  w-100vw text-wrap text-center lg:w-1/2"
-        >
-          The Wedding of Shakoora & Nabeel
-        </span>
-
-        <>
-          <span>TO:</span>
-          <span className="text-center">{guest.name.toUpperCase()}</span>
-        </>
-
-        <RsvpModalAndButtons
-          guestName={guest.name}
-          guestEmail={guest.email}
-          submitted={submittedRsvp}
-          setSubmitted={setSubmittedRsvp}
-          db={db}
+    <>
+      <Head>
+        <title>Into The Woods</title>
+        <meta name="description" content="The wedding of Shakoora and Nabeel" />
+        <meta
+          name="keywords"
+          content="intothewoods, Shakoora, Nabeel, Shakoora Sabree, wedding, Shakoora wedding, Shakoora and Nabeel wedding"
         />
-
-        <Swirly />
-
+        <meta name="author" content="Unhired.dev" />
+        <meta property="og:title" content="Into The Woods" />
+        <meta
+          property="og:description"
+          content="The wedding of Shakoora and Nabeel"
+        />
+        <meta property="og:url" content="https://intothewoods.wedding" />
+        <link rel="canonical" href="https://intothewoods.wedding" />
+      </Head>
+      <main
+        style={{
+          height: "100vh",
+          overflow: "scroll"
+        }}
+        className="text-xl"
+      >
         <div
-          className="m-5 w-4/5"
           style={{
-            background: "rgba(255, 255, 255, 0.4)",
-            backdropFilter: "blur(10px)",
-            borderRadius: "10px",
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            justifyContent: "center"
+            backgroundImage: `url(${TreesBackground.src})`,
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            backgroundAttachment: "scroll",
+            height: "100vh",
+            position: "absolute",
+            overflow: "scroll",
+            width: "100vw",
+            zIndex: -1
           }}
-        >
+        />
+        <iframe
+          scrolling="no"
+          src="assets/invitation.html"
+          className="w-full h-full lg:h-4/5"
+          style={{
+            overflow: "hidden"
+          }}
+        />
+        <div className="flex justify-center items-center flex-col">
           <span
-            style={{ fontFamily: "cursive" }}
-            className="w-full lg:w-1/2 text-center p-10 pl-10 pr-10 mt-10 text-2xl"
+            style={vibez.style}
+            className="p-10 text-7xl  w-100vw text-wrap text-center lg:w-1/2"
           >
-            <span className="pr-1 text-4xl" style={vibez.style}>
-              Together
-            </span>{" "}
-            with their families, Shakoora and Nabeel invite you to join them as
-            they go into the woods to celebrate their union. Indoor reception to
-            follow.
+            The Wedding of Shakoora & Nabeel
           </span>
 
-          <DetailsRow
-            host="The Sabree and Al-Khattab Families"
-            date={{
-              day: "Sunday, September 29 2024",
-              time: "2:30PM EDT"
-            }}
-            address={{
-              location: "Into the Woods",
-              street: "432 S P County Rd 850 E",
-              city: "Greensburg, IN 47240"
-            }}
+          <>
+            <span>TO:</span>
+            <span className="text-center">{guest.name.toUpperCase()}</span>
+          </>
+
+          <RsvpModalAndButtons
+            guestName={guest.name}
+            guestEmail={guest.email}
+            submitted={submittedRsvp}
+            setSubmitted={setSubmittedRsvp}
+            db={db}
           />
+
+          <Swirly />
+
+          <div
+            className="m-5 w-4/5"
+            style={{
+              background: "rgba(255, 255, 255, 0.4)",
+              backdropFilter: "blur(10px)",
+              borderRadius: "10px",
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              justifyContent: "center"
+            }}
+          >
+            <span
+              style={{ fontFamily: "cursive" }}
+              className="w-full lg:w-1/2 text-center p-10 pl-10 pr-10 mt-10 text-2xl"
+            >
+              <span className="pr-1 text-4xl" style={vibez.style}>
+                Together
+              </span>{" "}
+              with their families, Shakoora and Nabeel invite you to join them
+              as they go into the woods to celebrate their union. Indoor
+              reception to follow.
+            </span>
+
+            <DetailsRow
+              host="The Sabree and Al-Khattab Families"
+              date={{
+                day: "Sunday, September 29 2024",
+                time: "2:30PM EDT"
+              }}
+              address={{
+                location: "Into the Woods",
+                street: "432 S P County Rd 850 E",
+                city: "Greensburg, IN 47240"
+              }}
+            />
+          </div>
         </div>
-      </div>
-      <ContactFab />
-      <Footer />
-      <Toaster />
-    </main>
+        <ContactFab />
+        <Footer />
+        <Toaster />
+      </main>
+    </>
   );
 }

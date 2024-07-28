@@ -84,7 +84,7 @@ export default function Home() {
 
         <>
           <span>TO:</span>
-          <span>{guest.name.toUpperCase()}</span>
+          <span className="text-center">{guest.name.toUpperCase()}</span>
         </>
 
         <RsvpModalAndButtons
@@ -98,19 +98,21 @@ export default function Home() {
         <Swirly />
 
         <div
-          className="m-5"
+          className="m-5 w-4/5"
           style={{
             background: "rgba(255, 255, 255, 0.4)",
             backdropFilter: "blur(10px)",
             borderRadius: "10px",
-            width: "90%",
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
             justifyContent: "center"
           }}
         >
-          <span className="w-full lg:w-1/2 text-center p-10 pl-10 pr-10 mt-10 text-2xl">
+          <span
+            style={{ fontFamily: "cursive" }}
+            className="w-full lg:w-1/2 text-center p-10 pl-10 pr-10 mt-10 text-2xl"
+          >
             <span className="pr-1 text-4xl" style={vibez.style}>
               Together
             </span>{" "}

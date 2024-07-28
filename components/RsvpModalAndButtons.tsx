@@ -25,7 +25,8 @@ const formSchema = z.object({
   email: z.string().email({
     message: "Invalid email."
   }),
-  msg: z.string().max(500)
+  msg: z.string().max(500),
+  diet: z.string().max(500)
 });
 
 export const RsvpModalAndButtons = ({
@@ -50,12 +51,14 @@ export const RsvpModalAndButtons = ({
     defaultValues: {
       name: guestName,
       email: guestEmail,
-      msg: ""
+      msg: "",
+      diet: ""
     },
     values: {
       name: guestName,
       email: guestEmail,
-      msg: ""
+      msg: "",
+      diet: ""
     }
   });
   const { toast } = useToast();
@@ -84,7 +87,7 @@ export const RsvpModalAndButtons = ({
       title:
         "RSVP Submitted for " +
         values.name +
-        (hasGuests ? " and " + numOfGuests[0] + " more" : ""),
+        (hasGuests ? " and " + (numOfGuests[0] - 1) + " more" : ""),
       description: willAttend ? "See you there!" : "We'll miss you!"
     });
   }
@@ -160,6 +163,7 @@ export const RsvpModalAndButtons = ({
               onClick={() => {
                 setWillAttend(false);
                 setNumOfGuests([1]);
+                form.setValue("diet", "");
               }}
             >
               <span className={!willAttend ? "text-blue font-semibold" : ""}>

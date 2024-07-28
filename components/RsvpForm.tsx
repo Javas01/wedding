@@ -3,7 +3,6 @@ import { Slider } from "@/components/ui/slider";
 import { Input } from "@/components/ui/input";
 import React from "react";
 import { Button } from "@/components/ui/button";
-import { DialogFooter } from "@/components/ui/dialog";
 import {
   Form,
   FormField,
@@ -13,6 +12,11 @@ import {
   FormMessage
 } from "@/components/ui/form";
 import { Textarea } from "@/components/ui/textarea";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger
+} from "@/components/ui/popover";
 
 export const RsvpForm = ({
   form,
@@ -84,7 +88,26 @@ export const RsvpForm = ({
               step={1}
             />
           </div>
-
+          <FormField
+            control={form.control}
+            name="diet"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel htmlFor="text" className="text-right">
+                  Dietary Restrictions
+                </FormLabel>
+                <FormControl>
+                  <Textarea
+                    disabled={!willAttend}
+                    placeholder="Enter your dietary restrictions here"
+                    className="col-span-3"
+                    {...field}
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
           <FormField
             control={form.control}
             name="msg"
@@ -104,9 +127,23 @@ export const RsvpForm = ({
               </FormItem>
             )}
           />
-          <DialogFooter>
+          <div className="flex flex-row justify-between w-full ">
+            <Popover>
+              <PopoverTrigger asChild>
+                <Button type="button">Registry</Button>
+              </PopoverTrigger>
+              <PopoverContent className="w-64">
+                <p className="text-center">
+                  Instead of a wedding registry, the couple have requested
+                  hand-written cards featuring words of wisdom for the newly
+                  weds. If you so choose, these can be sent to the couple at
+                  11659 Sinclair Dr, Indianapolis, IN 46235. Thank you and G-d
+                  bless!
+                </p>
+              </PopoverContent>
+            </Popover>
             <Button type="submit">Submit RSVP</Button>
-          </DialogFooter>
+          </div>
         </div>
       </form>
     </Form>

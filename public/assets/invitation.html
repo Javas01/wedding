@@ -129,7 +129,26 @@
           z-index: 0;
         }
       }
+      @media (max-height: 900px) {
+        img {
+          animation: slideup 3s 2s forwards;
+        }
 
+        @keyframes slideup {
+          0% {
+            transform: rotate(-90deg);
+          }
+          50% {
+            transform: translateY(-2.5vw) rotate(-90deg);
+            padding-left: 200px;
+          }
+          100% {
+            padding-left: 0;
+            transform: translateY(-5vw) translateX(-700vw) rotate(0deg)
+              scale(1.5);
+          }
+        }
+      }
       @media (max-width: 450px) {
         .envelope {
           width: 400px;

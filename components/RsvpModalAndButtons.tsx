@@ -141,7 +141,7 @@ export const RsvpModalAndButtons = ({
         </DialogTrigger>
       </div>
 
-      <DialogContent className="sm:max-w-[425px]">
+      <DialogContent className="sm:max-w-full overflow-y-scroll max-h-screen">
         <DialogHeader>
           <DialogTitle className="text-center">
             Will you make it, {guestName}?

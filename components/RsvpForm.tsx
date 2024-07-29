@@ -17,6 +17,13 @@ import {
   PopoverContent,
   PopoverTrigger
 } from "@/components/ui/popover";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue
+} from "@/components/ui/select";
 
 export const RsvpForm = ({
   form,
@@ -90,19 +97,28 @@ export const RsvpForm = ({
           </div>
           <FormField
             control={form.control}
-            name="diet"
+            name="meal"
             render={({ field }) => (
               <FormItem>
                 <FormLabel htmlFor="text" className="text-right">
-                  Dietary Restrictions
+                  Meal preference
                 </FormLabel>
                 <FormControl>
-                  <Textarea
+                  <Select
+                    value={field.value}
+                    onValueChange={field.onChange}
+                    defaultValue={field.value}
                     disabled={!willAttend}
-                    placeholder="Enter your dietary restrictions here"
-                    className="col-span-3"
-                    {...field}
-                  />
+                  >
+                    <SelectTrigger className="w-full">
+                      <SelectValue placeholder="None" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="chicken">Chicken</SelectItem>
+                      <SelectItem value="fish">Fish</SelectItem>
+                      <SelectItem value="vegetarian">Vegetarian</SelectItem>
+                    </SelectContent>
+                  </Select>
                 </FormControl>
                 <FormMessage />
               </FormItem>

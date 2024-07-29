@@ -15,20 +15,6 @@ import { Button } from "./ui/button";
 import { DialogHeader } from "./ui/dialog";
 import { useToast } from "./ui/use-toast";
 
-const formSchema = z.object({
-  name: z
-    .string()
-    .min(2, {
-      message: "Name must be at least 2 characters."
-    })
-    .max(50),
-  email: z.string().email({
-    message: "Invalid email."
-  }),
-  msg: z.string().max(500),
-  diet: z.string().max(500)
-});
-
 export const RsvpModalAndButtons = ({
   guestName,
   guestEmail,
@@ -46,19 +32,47 @@ export const RsvpModalAndButtons = ({
   const [numOfGuests, setNumOfGuests] = useState([1]);
   const [open, setOpen] = useState(false);
 
+  const formSchema = z.object({
+    name: z
+      .string()
+      .min(2, {
+        message: "Name must be at least 2 characters."
+      })
+      .max(50),
+    email: z.string().email({
+      message: "Invalid email."
+    }),
+    msg: z.string().max(500),
+    ...(willAttend
+      ? {
+          meal: z
+            .string()
+            .min(1, "You must select an option")
+            .refine(
+              (value) => ["chicken", "fish", "vegetarian"].includes(value),
+              {
+                message: "Invalid option selected"
+              }
+            )
+        }
+      : {
+          meal: z.string().optional()
+        })
+  });
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       name: guestName,
       email: guestEmail,
       msg: "",
-      diet: ""
+      meal: ""
     },
     values: {
       name: guestName,
       email: guestEmail,
       msg: "",
-      diet: ""
+      meal: ""
     }
   });
   const { toast } = useToast();
@@ -70,7 +84,7 @@ export const RsvpModalAndButtons = ({
       willAttend,
       ...(willAttend
         ? {
-            numOfGuests: hasGuests ? numOfGuests[0] : 1
+            numOfGuests: numOfGuests[0]
           }
         : {
             numOfGuests: 0
@@ -163,7 +177,7 @@ export const RsvpModalAndButtons = ({
               onClick={() => {
                 setWillAttend(false);
                 setNumOfGuests([1]);
-                form.setValue("diet", "");
+                form.setValue("meal", "");
               }}
             >
               <span className={!willAttend ? "text-blue font-semibold" : ""}>

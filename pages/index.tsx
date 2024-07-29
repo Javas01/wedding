@@ -87,7 +87,7 @@ export default function Home() {
         <iframe
           scrolling="no"
           src="assets/invitation.html"
-          className="w-full h-full lg:h-4/5"
+          className="w-full h-1/2 lg:h-4/5"
           style={{
             overflow: "hidden"
           }}

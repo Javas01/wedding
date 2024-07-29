@@ -1,6 +1,20 @@
 <html>
   <head>
     <style>
+      :root {
+        --img-width: 20vw;
+        --half-img-width: 10vw;
+        --double-img-width: 40vw;
+        --double-half-img-width: 20vw;
+        --envelope-width: 40vw;
+        --double-envelope-width: 80vw;
+
+        --move-down: calc(var(--img-width) * 0.75);
+        --move-up: calc(var(--img-width) * -0.5);
+        --double-move-down: calc(var(--double-img-width) * 0.75);
+        --double-move-up: calc(var(--double-img-width) * -0.5);
+      }
+
       body {
         background: transparent;
         font-family: Arial, sans-serif;
@@ -13,75 +27,68 @@
 
       img {
         position: absolute;
-        right: 0;
-        width: 300px;
-        padding-left: 200px;
-        transform: rotate(-90deg) translateX(-40px);
+        width: var(--img-width);
+        transform: rotate(-90deg);
         animation: slideup 3s 2s forwards;
       }
-
       .envelope {
+        margin-top: 50vh;
         position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
         z-index: 0;
-        width: 500px;
-        height: 300px;
+        width: var(--envelope-width);
+        height: var(--img-width);
       }
-      .envelope-flap {
-        position: absolute;
-        top: 0;
-        width: 0;
-        height: 0;
-        border-left: 250px solid transparent;
-        border-right: 250px solid transparent;
-        border-top: 150px solid #6c8e6c;
-        z-index: 1;
-        animation: openflap 1.9s forwards, slidedownflap 3s 2s forwards;
-      }
+      .envelope-flap,
       .envelope-top {
         position: absolute;
         top: 0;
         width: 0;
         height: 0;
-        border-left: 250px solid transparent;
-        border-right: 250px solid transparent;
-        border-top: 150px solid #6c8e6c;
-        animation: slidedown 3s 2s forwards;
+        border-left: var(--img-width) solid transparent;
+        border-right: var(--img-width) solid transparent;
+        border-top: var(--half-img-width) solid #6c8e6c;
       }
-      .envelope-bottom {
-        position: absolute;
+      .envelope-flap {
         z-index: 1;
-        bottom: 0;
-        width: 0;
-        height: 0;
-        border-left: 250px solid transparent;
-        border-right: 250px solid transparent;
-        border-bottom: 150px solid #7ba37b;
-        animation: slidedown 3s 2s forwards;
-        box-shadow: 0 15px 15px -5px rgba(0, 0, 0, 0.7); /* Stronger shadow */
+        animation: openflap 1.9s forwards, slidedownflap 3s 2s forwards;
       }
-      .envelope-left {
-        position: absolute;
-        z-index: 1;
-        right: 0;
-        width: 0;
-        height: 0;
-        border-bottom: 150px solid transparent;
-        border-right: 250px solid #6f9b6f;
-        border-top: 150px solid transparent;
+      .envelope-top {
         animation: slidedown 3s 2s forwards;
-        box-shadow: 10px 0 10px -5px rgba(0, 0, 0, 0.5); /* Shadow on the right side */
       }
+      .envelope-bottom,
+      .envelope-left,
       .envelope-right {
         position: absolute;
         z-index: 1;
-        left: 0;
         width: 0;
         height: 0;
-        border-bottom: 150px solid transparent;
-        border-left: 250px solid #6f9b6f;
-        border-top: 150px solid transparent;
+      }
+      .envelope-bottom {
+        bottom: 0;
+        border-left: var(--img-width) solid transparent;
+        border-right: var(--img-width) solid transparent;
+        border-bottom: var(--half-img-width) solid #6c8e6c;
         animation: slidedown 3s 2s forwards;
-        box-shadow: -10px 0 10px -5px rgba(0, 0, 0, 0.5);
+        box-shadow: 0 1.5vw 1.5vw -0.5vw rgba(0, 0, 0, 0.7);
+      }
+      .envelope-left {
+        right: 0;
+        border-bottom: var(--half-img-width) solid transparent;
+        border-right: var(--img-width) solid #6c8e6c;
+        border-top: var(--half-img-width) solid transparent;
+        animation: slidedown 3s 2s forwards;
+        box-shadow: 1.5vw 0 1.5vw -0.5vw rgba(0, 0, 0, 0.7);
+      }
+      .envelope-right {
+        left: 0;
+        border-bottom: var(--half-img-width) solid transparent;
+        border-left: var(--img-width) solid #6c8e6c;
+        border-top: var(--half-img-width) solid transparent;
+        animation: slidedown 3s 2s forwards;
+        box-shadow: -1.5vw 0 1.5vw -0.5vw rgba(0, 0, 0, 0.7);
       }
 
       @keyframes slideup {
@@ -89,34 +96,20 @@
           transform: rotate(-90deg);
         }
         50% {
-          transform: translateY(-100px) rotate(-90deg);
-          padding-left: 200px;
+          transform: translateY(var(--move-up)) rotate(-90deg);
         }
         100% {
-          padding-left: 0;
-          transform: translateY(-100px) translateX(-100px) rotate(0deg)
-            scale(1.5);
+          transform: translateY(var(--move-up)) rotate(0deg) scale(1.5);
         }
       }
-
       @keyframes slidedown {
         0% {
-          transform: translateY(0px);
+          transform: translateY(0);
         }
         100% {
-          transform: translateY(350px);
+          transform: translateY(var(--move-down));
         }
       }
-
-      @keyframes slidedownflap {
-        0% {
-          transform: translateY(0px) rotateX(180deg);
-        }
-        100% {
-          transform: translateY(350px) rotateX(180deg);
-        }
-      }
-
       @keyframes openflap {
         0% {
           transform: rotateX(0deg);
@@ -129,52 +122,42 @@
           z-index: 0;
         }
       }
-      @media (max-height: 900px) and (max-width: 1600px) {
-        img {
-          animation: slideup 3s 2s forwards;
+      @keyframes slidedownflap {
+        0% {
+          transform: translateY(0) rotateX(180deg);
         }
-
-        @keyframes slideup {
-          0% {
-            transform: rotate(-90deg);
-          }
-          50% {
-            transform: translateY(-2.5vw) rotate(-90deg);
-            padding-left: 200px;
-          }
-          100% {
-            padding-left: 0;
-            transform: translateY(-5vw) translateX(-7vw) rotate(0deg) scale(1.5);
-          }
+        100% {
+          transform: translateY(var(--move-down)) rotateX(180deg);
         }
       }
-      @media (max-width: 450px) {
+      @media (max-width: 750px) {
         .envelope {
-          width: 400px;
+          width: var(--double-envelope-width);
+          height: var(--double-img-width);
         }
-        .envelope-flap {
-          border-left: 200px solid transparent;
-          border-right: 200px solid transparent;
-        }
+        .envelope-flap,
         .envelope-top {
-          border-left: 200px solid transparent;
-          border-right: 200px solid transparent;
+          border-left: var(--double-img-width) solid transparent;
+          border-right: var(--double-img-width) solid transparent;
+          border-top: var(--img-width) solid #6c8e6c;
         }
         .envelope-bottom {
-          border-left: 200px solid transparent;
-          border-right: 200px solid transparent;
+          border-left: var(--double-img-width) solid transparent;
+          border-right: var(--double-img-width) solid transparent;
+          border-bottom: var(--img-width) solid #6c8e6c;
         }
         .envelope-left {
-          border-right: 200px solid #6f9b6f;
+          border-bottom: var(--double-half-img-width) solid transparent;
+          border-right: var(--double-img-width) solid #6c8e6c;
+          border-top: var(--double-half-img-width) solid transparent;
         }
         .envelope-right {
-          border-left: 200px solid #6f9b6f;
+          border-bottom: var(--double-half-img-width) solid transparent;
+          border-left: var(--double-img-width) solid #6c8e6c;
+          border-top: var(--double-half-img-width) solid transparent;
         }
         img {
-          width: 250px;
-          padding-left: 150px;
-
-          animation: slideup 3s 2s forwards;
+          width: var(--double-img-width);
         }
 
         @keyframes slideup {
@@ -182,13 +165,26 @@
             transform: rotate(-90deg);
           }
           50% {
-            transform: translateY(-5vw) rotate(-90deg);
-            padding-left: 200px;
+            transform: translateY(var(--double-move-up)) rotate(-90deg);
           }
           100% {
-            padding-left: 0;
-            transform: translateY(-10vw) translateX(-18vw) rotate(0deg)
-              scale(1.5);
+            transform: translateY(var(--double-move-up)) rotate(0deg) scale(1.5);
+          }
+        }
+        @keyframes slidedown {
+          0% {
+            transform: translateY(0);
+          }
+          100% {
+            transform: translateY(var(--double-move-down));
+          }
+        }
+        @keyframes slidedownflap {
+          0% {
+            transform: translateY(0) rotateX(180deg);
+          }
+          100% {
+            transform: translateY(var(--double-move-down)) rotateX(180deg);
           }
         }
       }

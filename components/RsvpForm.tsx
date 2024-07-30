@@ -24,6 +24,7 @@ import {
   SelectTrigger,
   SelectValue
 } from "@/components/ui/select";
+import { DialogFooter } from "./ui/dialog";
 
 export const RsvpForm = ({
   form,
@@ -114,7 +115,7 @@ export const RsvpForm = ({
                       <SelectValue placeholder="None" />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="chicken">Chicken</SelectItem>
+                      <SelectItem value="poultry">Poultry</SelectItem>
                       <SelectItem value="fish">Fish</SelectItem>
                       <SelectItem value="vegetarian">Vegetarian</SelectItem>
                     </SelectContent>
@@ -143,23 +144,9 @@ export const RsvpForm = ({
               </FormItem>
             )}
           />
-          <div className="flex flex-row justify-between w-full ">
-            <Popover>
-              <PopoverTrigger asChild>
-                <Button type="button">Registry</Button>
-              </PopoverTrigger>
-              <PopoverContent className="w-64">
-                <p className="text-center">
-                  Instead of a wedding registry, the couple have requested
-                  hand-written cards featuring words of wisdom for the newly
-                  weds. If you so choose, these can be sent to the couple at
-                  11659 Sinclair Dr, Indianapolis, IN 46235. Thank you and G-d
-                  bless!
-                </p>
-              </PopoverContent>
-            </Popover>
+          <DialogFooter>
             <Button type="submit">Submit RSVP</Button>
-          </div>
+          </DialogFooter>
         </div>
       </form>
     </Form>

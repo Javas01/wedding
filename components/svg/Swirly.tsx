@@ -11,7 +11,7 @@ export const Swirly = () => (
       width: "150px"
     }}
     xmlSpace="preserve"
-    fill="#85A3D9"
+    fill="black"
   >
     <style type="text/css">
       {`.st0{fill-rule:evenodd;clip-rule:evenodd;stroke:#000000;stroke-width:0.75;stroke-miterlimit:10;}`}

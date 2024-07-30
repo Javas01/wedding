@@ -8,7 +8,7 @@ export const Dot = () => (
     y="0px"
     viewBox="0 0 10.5 10.5"
     xmlSpace="preserve"
-    fill="rgb(41, 100, 195)"
+    fill="black"
     width={8}
   >
     <circle cx="5.2" cy="5.2" r="5.2" />

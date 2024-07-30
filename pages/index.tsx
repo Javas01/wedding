@@ -10,6 +10,8 @@ import { Great_Vibes, Dancing_Script } from "next/font/google";
 import TreesBackground from "../public/assets/trees_five.jpg";
 import { ContactFab } from "@/components/Fab";
 import Head from "next/head";
+import { RegistryFab } from "@/components/Registry";
+import { Dialog, DialogContent } from "@/components/ui/dialog";
 
 const vibez = Great_Vibes({
   subsets: ["latin"],
@@ -37,6 +39,7 @@ export default function Home() {
     email: ""
   });
   const [submittedRsvp, setSubmittedRsvp] = useState(false);
+  const [open, setOpen] = useState(false);
 
   useEffect(() => {
     const guestName =
@@ -44,6 +47,19 @@ export default function Home() {
     const guestEmail =
       new URLSearchParams(window.location.search).get("email") ?? "";
     setGuest({ name: guestName, email: guestEmail });
+  }, []);
+
+  useEffect(() => {
+    const handleMessage = (event: any) => {
+      if (event.data === "Image clicked") {
+        setOpen(true);
+      }
+    };
+
+    window.addEventListener("message", handleMessage);
+    return () => {
+      window.removeEventListener("message", handleMessage);
+    };
   }, []);
 
   return (
@@ -75,7 +91,7 @@ export default function Home() {
           style={{
             backgroundImage: `url(${TreesBackground.src})`,
             backgroundSize: "cover",
-            backgroundPosition: "center",
+            backgroundPosition: "bottom center",
             backgroundAttachment: "scroll",
             height: "100vh",
             position: "absolute",
@@ -92,18 +108,34 @@ export default function Home() {
             overflow: "hidden"
           }}
         />
+        <Dialog open={open} onOpenChange={setOpen}>
+          <DialogContent
+            style={{
+              background: "transparent",
+              border: "none",
+              padding: 0,
+              display: "flex",
+              justifyContent: "center"
+            }}
+            // @ts-ignore
+            hideClose={true}
+          >
+            <img
+              className="w-[95vw]"
+              src="/assets/SHAKwedding_five.jpeg"
+              alt="invitation"
+            />
+          </DialogContent>
+        </Dialog>
         <div className="flex justify-center items-center flex-col">
           <span
             style={vibez.style}
-            className="p-10 text-7xl  w-100vw text-wrap text-center lg:w-1/2"
+            className="p-10 text-7xl  w-100vw text-wrap text-center"
           >
             The Wedding of Shakoora & Nabeel
           </span>
 
-          <>
-            <span>TO:</span>
-            <span className="text-center">{guest.name.toUpperCase()}</span>
-          </>
+          <span className="text-center font-normal">To: {guest.name}</span>
 
           <RsvpModalAndButtons
             guestName={guest.name}
@@ -116,7 +148,7 @@ export default function Home() {
           <Swirly />
 
           <div
-            className="m-5 w-4/5"
+            className="m-5 w-8/12"
             style={{
               background: "rgba(255, 255, 255, 0.4)",
               backdropFilter: "blur(10px)",
@@ -129,18 +161,25 @@ export default function Home() {
           >
             <span
               style={{ fontFamily: "cursive" }}
-              className="w-full lg:w-1/2 text-center p-10 pl-10 pr-10 mt-10 text-2xl"
+              className="w-full lg:w-3/4 text-center p-10 pl-10 pr-10 mt-10 text-2xl"
             >
               <span className="pr-1 text-4xl" style={vibez.style}>
-                Together
+                Together,
               </span>{" "}
               with their families, Shakoora and Nabeel invite you to join them
-              as they go into the woods to celebrate their union. Indoor
-              reception to follow.
+              as they go into the woods to celebrate their union. Guests are
+              invited to wear <span className="text-[#6C6B5F]">sage green</span>
+              , <span className="text-[#D4A6A1]">dusty pink</span>, and/or{" "}
+              <span className="text-[#D2B48C]">beige </span>
+              colored clothing. Indoor reception to follow.
             </span>
 
             <DetailsRow
-              host="The Sabree and Al-Khattab Families"
+              host={{
+                lineOne: "The Sabree",
+                lineTwo: "and Al-Khattab",
+                lineThree: "Families"
+              }}
               date={{
                 day: "Sunday, September 29 2024",
                 time: "2:30PM EDT"
@@ -153,6 +192,7 @@ export default function Home() {
             />
           </div>
         </div>
+        <RegistryFab />
         <ContactFab />
         <Footer />
         <Toaster />

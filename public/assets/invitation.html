@@ -3,16 +3,22 @@
     <style>
       :root {
         --img-width: 20vw;
-        --half-img-width: 10vw;
-        --double-img-width: 40vw;
-        --double-half-img-width: 20vw;
+        --double-img-width: calc(var(--img-width) * 2);
+
         --envelope-width: 40vw;
+        --envelope-height: calc(var(--envelope-width) / 2);
+        --half-envelope-height: calc(var(--envelope-height) / 2);
         --double-envelope-width: 80vw;
+        --double-envelope-height: calc(var(--double-envelope-width) / 2);
+        --half-double-envelope-height: calc(var(--double-envelope-height) / 2);
 
         --move-down: calc(var(--img-width) * 0.75);
         --move-up: calc(var(--img-width) * -0.5);
         --double-move-down: calc(var(--double-img-width) * 0.75);
         --double-move-up: calc(var(--double-img-width) * -0.5);
+
+        --animation-one-duration: 2.5s;
+        --animation-two-duration: 3s;
       }
 
       body {
@@ -25,11 +31,13 @@
         align-items: center;
       }
 
-      img {
+      .invitation {
         position: absolute;
+        cursor: pointer;
         width: var(--img-width);
         transform: rotate(-90deg);
-        animation: slideup 3s 2s forwards;
+        animation: slideup var(--animation-two-duration)
+          var(--animation-one-duration) forwards;
       }
       .envelope {
         margin-top: 50vh;
@@ -39,7 +47,8 @@
         align-items: center;
         z-index: 0;
         width: var(--envelope-width);
-        height: var(--img-width);
+        height: var(--envelope-height);
+        border-radius: 5%;
       }
       .envelope-flap,
       .envelope-top {
@@ -47,16 +56,19 @@
         top: 0;
         width: 0;
         height: 0;
-        border-left: var(--img-width) solid transparent;
-        border-right: var(--img-width) solid transparent;
-        border-top: var(--half-img-width) solid #6c8e6c;
+        border-left: var(--envelope-height) solid transparent;
+        border-right: var(--envelope-height) solid transparent;
+        border-top: var(--half-envelope-height) solid #6c8e6c;
       }
       .envelope-flap {
         z-index: 1;
-        animation: openflap 1.9s forwards, slidedownflap 3s 2s forwards;
+        animation: openflap var(--animation-one-duration) forwards,
+          slidedownflap var(--animation-two-duration)
+            var(--animation-one-duration) forwards;
       }
       .envelope-top {
-        animation: slidedown 3s 2s forwards;
+        animation: slidedown var(--animation-two-duration)
+          var(--animation-one-duration) forwards;
       }
       .envelope-bottom,
       .envelope-left,
@@ -68,27 +80,41 @@
       }
       .envelope-bottom {
         bottom: 0;
-        border-left: var(--img-width) solid transparent;
-        border-right: var(--img-width) solid transparent;
-        border-bottom: var(--half-img-width) solid #6c8e6c;
-        animation: slidedown 3s 2s forwards;
+        border-left: var(--envelope-height) solid transparent;
+        border-right: var(--envelope-height) solid transparent;
+        border-bottom: calc(var(--half-envelope-height) * 1.1) solid #5e845e;
+        animation: slidedown var(--animation-two-duration)
+          var(--animation-one-duration) forwards;
+        border-radius: 0 0 5% 5%;
         box-shadow: 0 1.5vw 1.5vw -0.5vw rgba(0, 0, 0, 0.7);
       }
       .envelope-left {
         right: 0;
-        border-bottom: var(--half-img-width) solid transparent;
-        border-right: var(--img-width) solid #6c8e6c;
-        border-top: var(--half-img-width) solid transparent;
-        animation: slidedown 3s 2s forwards;
+        border-bottom: var(--half-envelope-height) solid transparent;
+        border-right: var(--envelope-height) solid #6c8e6c;
+        border-top: var(--half-envelope-height) solid transparent;
+        animation: slidedown var(--animation-two-duration)
+          var(--animation-one-duration) forwards;
+        border-radius: 5% 0 5% 5%;
         box-shadow: 1.5vw 0 1.5vw -0.5vw rgba(0, 0, 0, 0.7);
       }
       .envelope-right {
         left: 0;
-        border-bottom: var(--half-img-width) solid transparent;
-        border-left: var(--img-width) solid #6c8e6c;
-        border-top: var(--half-img-width) solid transparent;
-        animation: slidedown 3s 2s forwards;
+        border-bottom: var(--half-envelope-height) solid transparent;
+        border-left: var(--envelope-height) solid #6c8e6c;
+        border-top: var(--half-envelope-height) solid transparent;
+        animation: slidedown var(--animation-two-duration)
+          var(--animation-one-duration) forwards;
+        border-radius: 0 5% 5% 5%;
         box-shadow: -1.5vw 0 1.5vw -0.5vw rgba(0, 0, 0, 0.7);
+      }
+      .stamp {
+        position: absolute;
+        width: 5vw;
+        height: 5vw;
+        z-index: 3;
+        animation: slidedown var(--animation-two-duration)
+          var(--animation-one-duration) forwards;
       }
 
       @keyframes slideup {
@@ -99,7 +125,7 @@
           transform: translateY(var(--move-up)) rotate(-90deg);
         }
         100% {
-          transform: translateY(var(--move-up)) rotate(0deg) scale(1.5);
+          transform: translateY(var(--move-up)) rotate(0deg) scale(1.75);
         }
       }
       @keyframes slidedown {
@@ -133,31 +159,36 @@
       @media (max-width: 750px) {
         .envelope {
           width: var(--double-envelope-width);
-          height: var(--double-img-width);
+          height: var(--double-envelope-height);
         }
         .envelope-flap,
         .envelope-top {
-          border-left: var(--double-img-width) solid transparent;
-          border-right: var(--double-img-width) solid transparent;
-          border-top: var(--img-width) solid #6c8e6c;
+          border-left: var(--double-envelope-height) solid transparent;
+          border-right: var(--double-envelope-height) solid transparent;
+          border-top: var(--half-double-envelope-height) solid #6c8e6c;
         }
         .envelope-bottom {
-          border-left: var(--double-img-width) solid transparent;
-          border-right: var(--double-img-width) solid transparent;
-          border-bottom: var(--img-width) solid #6c8e6c;
+          border-left: var(--double-envelope-height) solid transparent;
+          border-right: var(--double-envelope-height) solid transparent;
+          border-bottom: calc(var(--half-double-envelope-height) * 1.1) solid
+            #5e845e;
         }
         .envelope-left {
-          border-bottom: var(--double-half-img-width) solid transparent;
-          border-right: var(--double-img-width) solid #6c8e6c;
-          border-top: var(--double-half-img-width) solid transparent;
+          border-bottom: var(--half-double-envelope-height) solid transparent;
+          border-right: var(--double-envelope-height) solid #6c8e6c;
+          border-top: var(--half-double-envelope-height) solid transparent;
         }
         .envelope-right {
-          border-bottom: var(--double-half-img-width) solid transparent;
-          border-left: var(--double-img-width) solid #6c8e6c;
-          border-top: var(--double-half-img-width) solid transparent;
+          border-bottom: var(--half-double-envelope-height) solid transparent;
+          border-left: var(--double-envelope-height) solid #6c8e6c;
+          border-top: var(--half-double-envelope-height) solid transparent;
         }
-        img {
+        .invitation {
           width: var(--double-img-width);
+        }
+        .stamp {
+          width: 10vw;
+          height: 10vw;
         }
 
         @keyframes slideup {
@@ -189,18 +220,26 @@
         }
       }
     </style>
+    <script>
+      window.onload = function () {
+        document.getElementById("invitation").addEventListener("click", () => {
+          window.parent.postMessage("Image clicked", "*");
+        });
+      };
+    </script>
   </head>
-
   <body>
     <div class="envelope">
       <div class="envelope-flap"></div>
       <div class="envelope-top"></div>
       <div class="envelope-left"></div>
       <img
+        id="invitation"
         class="invitation"
-        src="SHAKwedding_four.jpeg"
+        src="SHAKwedding_five.jpeg"
         alt="image of invitation"
       />
+      <img class="stamp" src="seal2.png" alt="image of stamp" />
       <div class="envelope-right"></div>
       <div class="envelope-bottom"></div>
     </div>

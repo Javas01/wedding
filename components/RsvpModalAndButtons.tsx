@@ -49,7 +49,7 @@ export const RsvpModalAndButtons = ({
             .string()
             .min(1, "You must select an option")
             .refine(
-              (value) => ["chicken", "fish", "vegetarian"].includes(value),
+              (value) => ["poultry", "fish", "vegetarian"].includes(value),
               {
                 message: "Invalid option selected"
               }

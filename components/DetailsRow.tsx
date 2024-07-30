@@ -14,19 +14,25 @@ export const DetailsRow = ({
   date,
   address
 }: {
-  host: string;
+  host: {
+    lineOne: string;
+    lineTwo: string;
+    lineThree: string;
+  };
   date: { day: string; time: string };
   address: { location: string; street: string; city: string };
 }) => {
   const { toast } = useToast();
   return (
-    <div className="flex space-x-3 flex-col w-full lg:w-3/4 justify-evenly pb-10 lg:pb-14 pt-10 lg:flex-row text-center">
+    <div className="flex space-x-3 flex-col w-full lg:w-11/12 justify-evenly pb-10 lg:pb-14 pt-10 lg:flex-row text-center">
       <div className="flex flex-col  items-center">
         <span className="pb-10 text-4xl underline" style={dancing.style}>
           Host
         </span>
         <Dot />
-        <span className="pt-10">{host}</span>
+        <span className="pt-10">{host.lineOne}</span>
+        <span>{host.lineTwo}</span>
+        <span>{host.lineThree}</span>
       </div>
 
       <Spacer />

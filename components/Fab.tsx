@@ -10,27 +10,19 @@ export const ContactFab = () => {
     <Popover>
       <PopoverTrigger asChild>
         <Button className="fixed bottom-5 right-5 z-5 rounded-full bg-[#1F2937]">
-          ?
+          Questions
         </Button>
       </PopoverTrigger>
-      <PopoverContent className="w-60 bg-[#1F2937]">
+      <PopoverContent className="w-62 bg-[#1F2937]">
         <div className="grid gap-4 text-white ">
           <span className="text-xl">Questions? Contact us</span>{" "}
           <a
             style={{
               color: "#FFD700"
             }}
-            href="mailto:djsabree@yahoo.com"
+            href="mailto:nabeelandshakoora@gmail.com"
           >
-            djsabree@yahoo.com
-          </a>{" "}
-          <a
-            style={{
-              color: "#FFD700"
-            }}
-            href="mailto:halima.alkhattab@gmail.com"
-          >
-            halima.alkhattab@gmail.com
+            nabeelandshakoora@gmail.com
           </a>
         </div>
       </PopoverContent>

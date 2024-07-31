@@ -75,11 +75,18 @@ export default function Home() {
           content="intothewoods, Shakoora, Nabeel, Shakoora Sabree, wedding, Shakoora wedding, Shakoora and Nabeel wedding"
         />
         <meta name="author" content="Unhired.dev" />
+        <meta
+          name="description"
+          content="Together with their families, Shakoora and Nabeel invite you to join them as they go into the woods to celebrate their union. Indoor reception to follow."
+        />
         <meta property="og:title" content="Into The Woods" />
         <meta
           property="og:description"
           content="The wedding of Shakoora and Nabeel"
         />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="Content-Language" content="en" />
+        <meta name="robots" content="index, follow" />
         <meta property="og:url" content="https://intothewoods.wedding" />
         <link rel="canonical" href="https://intothewoods.wedding" />
       </Head>

@@ -31,12 +31,11 @@ export const RegistryFab = () => {
           no obligation. We look forward to celebrating with you, whether in
           person or from afar.
         </p>
-        <div className="flex flex-col pt-5 lg:flex-row w-full justify-between">
+        <div className="flex flex-col pt-5 sm:flex-row w-full justify-between">
           <Button
             size="lg"
             variant={null}
-            className="w-full lg:w-1/4 bg-[#003087] rounded-full max-sm:mb-5"
-            style={{}}
+            className="w-full sm:w-1/4 bg-[#003087] rounded-full max-sm:mb-5"
             onClick={() => {
               window.open(
                 "https://paypal.me/nabeelalkhattab?country.x=US&locale.x=en_US",
@@ -50,8 +49,7 @@ export const RegistryFab = () => {
           <Button
             size="lg"
             variant={null}
-            className="w-full lg:w-1/4 bg-[#00C852] rounded-full max-sm:mb-5"
-            style={{}}
+            className="w-full sm:w-1/4 bg-[#00C852] rounded-full max-sm:mb-5"
             onClick={() => {
               window.open("https://cash.app/$NabeelAl", "_blank");
             }}
@@ -61,8 +59,7 @@ export const RegistryFab = () => {
           <Button
             size="lg"
             variant={null}
-            className="w-full lg:w-1/4 bg-[#3496CD] rounded-full max-sm:mb-5"
-            style={{}}
+            className="w-full sm:w-1/4 bg-[#3496CD] rounded-full max-sm:mb-5"
             onClick={() => {
               window.open("https://venmo.com/u/nalkhatt", "_blank");
             }}

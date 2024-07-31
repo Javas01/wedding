@@ -66,6 +66,9 @@ export default function Home() {
     <>
       <Head>
         <title>Into The Woods</title>
+        <link rel="icon" href="/favicon.ico" />
+        <meta property="og:image" content="/favicon.ico" />
+        <meta name="twitter:image" content="/favicon.ico" />
         <meta name="description" content="The wedding of Shakoora and Nabeel" />
         <meta
           name="keywords"

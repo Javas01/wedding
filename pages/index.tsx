@@ -6,7 +6,7 @@ import { Swirly } from "@/components/svg";
 import { DetailsRow } from "@/components/DetailsRow";
 import { RsvpModalAndButtons } from "@/components/RsvpModalAndButtons";
 import Footer from "@/components/Footer";
-import { Great_Vibes, Dancing_Script } from "next/font/google";
+import { Great_Vibes } from "next/font/google";
 import TreesBackground from "../public/assets/trees_five.jpg";
 import { ContactFab } from "@/components/Fab";
 import Head from "next/head";
@@ -132,7 +132,7 @@ export default function Home() {
           >
             <img
               className="w-[95vw]"
-              src="/assets/SHAKwedding_five.jpeg"
+              src="/assets/SHAKwedding_six.jpeg"
               alt="invitation"
             />
           </DialogContent>
@@ -140,7 +140,7 @@ export default function Home() {
         <div className="flex justify-center items-center flex-col">
           <span
             style={vibez.style}
-            className="p-10 text-7xl  w-100vw text-wrap text-center"
+            className="p-10 text-7xl max-sm:text-5xl  w-100vw text-wrap text-center"
           >
             The Wedding of Shakoora & Nabeel
           </span>
@@ -158,7 +158,7 @@ export default function Home() {
           <Swirly />
 
           <div
-            className="m-5 w-8/12"
+            className="m-5 w-8/12 max-sm:w-11/12"
             style={{
               background: "rgba(255, 255, 255, 0.4)",
               backdropFilter: "blur(10px)",

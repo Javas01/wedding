@@ -145,7 +145,7 @@ export default function Home() {
             The Wedding of Shakoora & Nabeel
           </span>
 
-          <span className="text-center font-normal">To: {guest.name}</span>
+          {/* <span className="text-center font-normal">To: {guest.name}</span> */}
 
           <RsvpModalAndButtons
             guestName={guest.name}

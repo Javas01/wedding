@@ -74,7 +74,7 @@ export default function Home() {
           name="keywords"
           content="intothewoods, Shakoora, Nabeel, Shakoora Sabree, wedding, Shakoora wedding, Shakoora and Nabeel wedding"
         />
-        <meta name="author" content="Unhired.dev" />
+        <meta name="author" content="Sabree.dev" />
         <meta
           name="description"
           content="Together with their families, Shakoora and Nabeel invite you to join them as they go into the woods to celebrate their union. Indoor reception to follow."

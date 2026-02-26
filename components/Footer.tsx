@@ -10,9 +10,9 @@ const Footer = () => {
             style={{
               color: "#FFD700"
             }}
-            href="http://www.unhired.dev"
+            href="http://www.sabree.dev"
           >
-            Unhired.dev
+            Sabree.dev
           </a>
         </p>
       </div>
